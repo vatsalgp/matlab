@@ -1,0 +1,41 @@
+clc;
+Fm=input('Enter frequency of the message signal: ');
+Fc=input('Enter frequency of the carrier signal: ');
+Vm=input('Enter amplitude of the message signal: ');
+Vc=input('Enter amplitude of the carrier signal: ');
+Fs=input('Enter sampling time Fs: ');
+t=(0:1/Fs:1);
+vm=Vm*cos(2*pi*Fm*t);
+vc=Vc*cos(2*pi*Fc*t);
+y=vm.*vc;
+temp=y.*cos(2*pi*Fc*t);
+[num,den]=butter(5,2*Fc/Fs);
+z=filtfilt(num,den,temp)*2;
+z=z/Vc;
+ 
+subplot(4,1,1);
+plot(t,vm);
+ylabel('Amplitude');
+xlabel('time');
+title('Message Signal');
+hold on;
+subplot(4,1,2);
+plot(t,vc);
+ylabel('Amplitude');
+xlabel('time');
+title('Carrier Signal');
+hold on;
+subplot(4,1,3);
+plot(t,y);
+ylabel('Amplitude');
+xlabel('time');
+title('Modulated Signal');
+hold on;
+ 
+subplot(4,1,4);
+plot(t,z);
+ylabel('Amplitude');
+xlabel('time');
+title('Demodulated Signal');
+hold on;
+

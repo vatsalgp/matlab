@@ -1,0 +1,26 @@
+clc; 
+close all; 
+fc=100; 
+fm=fc/10; 
+fs=100*fc; 
+t=0:1/fs:4/fm; 
+m=cos(2*pi*fm*t); 
+c=0.5*square(2*pi*fc*t)+0.5; 
+pam=m.*c; 
+subplot(3,1,1);
+plot(t,m); 
+xlabel('time'); 
+ylabel('Amplitude'); 
+title('Message Signal'); 
+subplot(3,1,2); 
+plot(t,c); 
+xlabel('time'); 
+ylabel('Amplitude'); 
+title('Carrier Signal'); 
+subplot(3,1,3); 
+plot(t,pam); 
+xlabel('time'); 
+ylabel('Amplitude'); 
+title('PAM Signal'); 
+hold on; 
+
